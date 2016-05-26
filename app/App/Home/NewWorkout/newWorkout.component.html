@@ -1,0 +1,5 @@
+
+<div class="button-group">
+    <button class="at_edit_workout_button" *ngIf="workout" (click)="onEditWorkoutClicked()">Edit Workout</button>
+    <button class="at_new_workout_button" *ngIf="!workout" (click)="onNewWorkoutButtonClicked()">Start New Workout</button>
+</div>

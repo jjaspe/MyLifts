@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-6">
+        <span>Set</span>            
+    </div>
+    <div class="col-sm-6">
+        <span>Exercise</span>
+    </div>
+    <div class="col-sm-6">
+        <span>Weight</span>            
+    </div>
+    <div class="col-sm-6">
+        <span>Reps</span>            
+    </div>
+</div>
+  
+<span *ngFor="let set of sets">
+    <br/>
+    <set [set]="set"></set>
+</span>

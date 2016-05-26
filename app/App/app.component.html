@@ -1,0 +1,9 @@
+<h1 class="at_title">{{title}}</h1>
+<dashboard (homeButtonClicked)="goToHome($event)"></dashboard>
+<div class="main at_main ">
+    <div [ngSwitch]="page">
+        <exercise-selection *ngSwitchWhen='1'></exercise-selection>
+        <home [user]="user" *ngSwitchWhen='0'></home>
+    </div>    
+</div>
+

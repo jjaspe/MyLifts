@@ -1,0 +1,6 @@
+<h2>Workouts</h2>
+<ul class="at_workouts workouts noindent">
+    <li *ngFor="let workout of workouts" class="workout at_workout" (click)="onSelected(workout)">
+        <span class="at_workout_date">{{workout.date}}</span>
+    </li>
+</ul>

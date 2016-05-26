@@ -1,0 +1,15 @@
+<div *ngIf="workout" [ngSwitch]="state">
+    <div *ngSwitchWhen="'show'">
+        <div class="today-workout at_today_workout">
+            <workout [workout]="workout"></workout>
+        </div>
+        <br>
+        <button class="at_add_set_button"  (click)="onAddSetButtonClicked()">Add Set</button>
+    </div>
+    <div *ngSwitchWhen="'add'">
+        <exercise-selection *ngIf="newSet" 
+            (exerciseSelected)="onExerciseSelected($event)"></exercise-selection>
+        <set-form *ngIf="newSet && newSet.exercise" [set]="newSet"></set-form>
+        <button class="at_back_button" (click)="state='show'">Show</button>        
+    </div>
+</div>

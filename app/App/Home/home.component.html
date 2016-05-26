@@ -1,0 +1,6 @@
+<div *ngIf="!currentWorkout">
+    <new-workout></new-workout>
+</div>
+<div *ngIf="currentWorkout">
+    <workout-details [state]="'show'" [workout]="currentWorkout"></workout-details>
+</div>

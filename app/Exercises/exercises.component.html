@@ -1,0 +1,6 @@
+<h2 class="exercises_title">{{title}}</h2>
+<ul class="at_exercise exercises grid-pad noindent nobullets">
+    <li *ngFor="let exercise of exercises" class="exercise at_exercises" (click)="onExerciseSelected(exercise)">
+        <span class="badge at_exercise_name">{{exercise.name}}</span>
+    </li>
+</ul>

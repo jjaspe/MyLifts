@@ -1,0 +1,4 @@
+<div *ngIf="workout" class="workout at_workout">    
+    <span class="at_workout_date workout-date">Date:{{workout.date|date:"MM/dd/yyyy"}}</span>
+    <set-list [sets]="workout.sets"></set-list>
+</div>

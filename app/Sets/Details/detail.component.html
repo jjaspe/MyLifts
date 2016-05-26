@@ -1,0 +1,8 @@
+<div *ngIf="details && details.length>0" class="details col-sm-12">
+    <ul class="details-list noindent nobullets">
+        <li class="detail at_detail" *ngFor="let detail of details">
+            <span>{{detail.name}}</span>
+            <input type="text" [(ngModel)]="detail.value">
+        </li>
+    </ul>
+</div>

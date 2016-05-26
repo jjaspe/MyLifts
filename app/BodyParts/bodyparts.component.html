@@ -1,0 +1,6 @@
+<h2>Body Parts</h2>
+<ul class="at_bodyparts bodyparts noindent">
+    <li *ngFor="let bodypart of bodyparts" class="bodypart at_bodypart" (click)="onSelected(bodypart)">
+        <span class="badge at_bodypart_name">{{bodypart.name}}</span>
+    </li>
+</ul>

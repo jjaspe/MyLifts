@@ -1,0 +1,87 @@
+#ignore kdiff3 merge & vim temp files
+*.orig
+*~
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+[Pp]ackages
+
+#Include NuGet.exe
+!/**/.nuget/NuGet.exe
+
+#Ignore Node packages (get them with npm install at build-time)
+**/node_modules/**/*
+FileServer/StaticFileServer/public/**/*
+!FileServer/StaticFileServer/public/favicon.ico
+
+#AtlasJavaServices
+#Ignore compiled classes
+*.class
+#Ignore generated jar and war files
+*.jar
+*.war
+
+#Include 3rd-party libraries
+!AtlasJavaServices/build/libraries/3rd-party/**/*.jar
+
+#Other generated files
+*.checkstyle
+TEST-*.xml
+dist/
+*.dbmdl
+AtlasJavaServices/build/CCDSubmitUtil/temp/**/*
+*.vs\config\applicationhost.config
+
+
+*.playlist
+Research/GWP.TestAutomation/FailingTests.playlist
+
+.vs/config/applicationhost.config
+typings/
+
+.idea
+typings/**
+node_modules
+jspm_packages
+link-checker-results.txt
+**/*npm-debug.log.*
+*.js
+*.js.map
+_test-output
+_temp
+
+!**/*e2e-spec.js
+!karma*.js
+!protractor*.js
+!systemjs.config.js
+!typings/typings.d.ts
+!wallaby.js
+
+app/*.orig
+
+app/stats/stats.component.ts.orig
