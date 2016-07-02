@@ -1,15 +1,17 @@
-<div *ngIf="workout" [ngSwitch]="state">
+<div *ngIf="workout" [ngSwitch]="state" class="col-sm-12">
     <div *ngSwitchWhen="'show'">
         <div class="today-workout at_today_workout">
             <workout [workout]="workout"></workout>
         </div>
         <br>
-        <button class="at_add_set_button"  (click)="onAddSetButtonClicked()">Add Set</button>
+        <button class="btn btn-success at_add_set_button"  (click)="onAddSetButtonClicked()">Add Set</button>        
+        <button class="btn btn-success at_submit_workout"  (click)="saveWorkoutClicked()">Save Workout</button>
     </div>
-    <div *ngSwitchWhen="'add'">
-        <exercise-selection *ngIf="newSet" 
-            (exerciseSelected)="onExerciseSelected($event)"></exercise-selection>
-        <set-form *ngIf="newSet && newSet.exercise" [set]="newSet"></set-form>
-        <button class="at_back_button" (click)="state='show'">Show</button>        
+    <div class="edit_workout" *ngSwitchWhen="'add'">  
+        <div>
+            <set-form *ngIf="newSet" [set]="newSet" [user]="user" (setAdded)="setAdded($event)"></set-form>
+        </div> 
+        <br>
+        <button class="btn btn-warning at_back_button" (click)="state='show'">Back</button> 
     </div>
 </div>

@@ -8,21 +8,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var index_1 = require("../index");
+var exercise_service_1 = require("../../Exercises/shared/exercise.service");
+var http_1 = require('@angular/http');
 var core_1 = require("@angular/core");
+var Rx_1 = require('rxjs/Rx');
+var index_1 = require('../../Session/index');
 var BodyPartService = (function () {
-    function BodyPartService() {
+    function BodyPartService(exerciseService, http, sessionService) {
+        this.exerciseService = exerciseService;
+        this.http = http;
+        this.sessionService = sessionService;
+        this.url = "/Bodyparts";
+        this.bodyParts = [];
     }
+    BodyPartService.prototype.initUrls = function () {
+        var _this = this;
+        this.url = this.sessionService.session.ApiUrl + this.url;
+        this.getBodyParts().subscribe(function (n) { return _this.bodyParts = n; });
+    };
     BodyPartService.prototype.getBodyParts = function () {
-        return index_1.MockBodyParts;
+        return this.http.get(this.url).map(this.extractBodyPartData.bind(this)).catch(this.handleError);
+    };
+    BodyPartService.prototype.extractBodyPartData = function (res) {
+        var body = res.json();
+        return body || {};
+    };
+    BodyPartService.prototype.getExercises = function (exerciseIds) {
+        var _this = this;
+        var exercises = [];
+        if (exerciseIds)
+            exerciseIds.forEach(function (n) { return _this.exerciseService.getExercise(n)
+                .then(function (m) { return exercises.push(m); }); });
+        return exercises;
+    };
+    BodyPartService.prototype.handleError = function (error) {
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+        console.error(errMsg);
+        return Rx_1.Observable.throw(errMsg);
+    };
+    BodyPartService.prototype.getMockBodyParts = function () {
+        return [];
     };
     BodyPartService.prototype.getExercisesFromBodyPart = function (bodypart) {
         if (bodypart)
-            return index_1.MockBodyParts.filter(function (n) { return n.id === bodypart.id; })[0].exercises;
+            return this.bodyParts.filter(function (n) { return n.Id === bodypart.Id; })[0].Exercises;
     };
     BodyPartService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [exercise_service_1.ExerciseService, http_1.Http, index_1.SessionService])
     ], BodyPartService);
     return BodyPartService;
 }());

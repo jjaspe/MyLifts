@@ -1,4 +1,4 @@
-.badge {
+.nice-button {
     display: inline-block;
     font-size: medium;
     color: white;
@@ -14,12 +14,18 @@
     width: 10rem;
 }
 
-.badge:hover {
+.nice-button:hover {
     color: #607D8B;
     background-color: #DDD;
     left: .1em;
     cursor: hand;
-    
+}
+
+.bodypart-button {
+    width: 15rem;
+    font-size: medium;
+    font-weight: bold;
+    margin: 0.8em .8em 0 0;
 }
 
 .bodyparts {

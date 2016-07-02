@@ -1,10 +1,10 @@
-import {BodyPart} from "../index"
+import {BodyPart} from "./BodyPart"
 import {ChestExercises,BackExercises,LegExercises,BicepsExercises} from "../../Exercises/index"
 export var MockBodyParts: BodyPart[]=[
-    {"id": 1, name:'Chest', exercises : ChestExercises},
-    {"id": 2, name: 'Back' , exercises : BackExercises},
-    {"id": 3, name: 'Biceps', exercises : BicepsExercises},
-    {"id": 4, name: 'Triceps', exercises : []},
-    {"id": 5, name: 'Abs', exercises : []},
-    {"id": 6, name: 'Legs', exercises : LegExercises}
+    {"Id": 1, Name:'Chest', Exercises : ChestExercises},
+    {"Id": 2, Name: 'Back' , Exercises : BackExercises},
+    {"Id": 3, Name: 'Biceps', Exercises : BicepsExercises},
+    {"Id": 4, Name: 'Triceps', Exercises : []},
+    {"Id": 5, Name: 'Abs', Exercises : []},
+    {"Id": 6, Name: 'Legs', Exercises : LegExercises}
 ]

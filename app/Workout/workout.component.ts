@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Workout} from './index'
-import { SetComponent, SetListComponent } from "../Sets/index"
+import { Set, SetComponent, SetListComponent } from "../Sets/index"
 
 @Component({
     selector: 'workout',
@@ -8,10 +8,8 @@ import { SetComponent, SetListComponent } from "../Sets/index"
     directives:[SetListComponent]
 })
 export class WorkoutComponent implements OnInit {
-    @Input()
-    workout:Workout;
+    @Input() workout:Workout;
     constructor() { }
 
     ngOnInit() { }
-
 }

@@ -1,6 +1,8 @@
 <h2 class="exercises_title">{{title}}</h2>
 <ul class="at_exercise exercises grid-pad noindent nobullets">
-    <li *ngFor="let exercise of exercises" class="exercise at_exercises" (click)="onExerciseSelected(exercise)">
-        <span class="badge at_exercise_name">{{exercise.name}}</span>
-    </li>
+    <div class="button-group">
+        <li *ngFor="let exercise of exercises" class="exercise at_exercises" (click)="onExerciseSelected(exercise)">
+            <span [class.active] = "exercise == selectedExercise" class="exercise-button btn btn-primary at_exercise_name btn-md ">{{exercise.Name}}</span>
+        </li>
+    </div>    
 </ul>

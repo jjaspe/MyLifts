@@ -1,6 +1,6 @@
 <div *ngIf="!currentWorkout">
-    <new-workout></new-workout>
+    <new-workout [user]="user"></new-workout>
 </div>
 <div *ngIf="currentWorkout">
-    <workout-details [state]="'show'" [workout]="currentWorkout"></workout-details>
+    <workout-details [state]="'show'" [user]="user" [workout]="currentWorkout"></workout-details>
 </div>

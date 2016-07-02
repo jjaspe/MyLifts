@@ -1,6 +1,6 @@
-<h2>Body Parts</h2>
+<h2>{{title}}</h2>
 <ul class="at_bodyparts bodyparts noindent">
-    <li *ngFor="let bodypart of bodyparts" class="bodypart at_bodypart" (click)="onSelected(bodypart)">
-        <span class="badge at_bodypart_name">{{bodypart.name}}</span>
+    <li *ngFor="let bodypart of realBodyParts" class="bodypart at_bodypart" (click)="onSelected(bodypart)">
+        <button class="bodypart-button btn btn-primary at_bodypart_name btn-md ">{{bodypart.Name}}</button>
     </li>
 </ul>

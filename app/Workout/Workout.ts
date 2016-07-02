@@ -1,7 +1,10 @@
-import {Set} from "../Sets/index"
+import {Set,SetGroup} from "../Sets/index"
 
 export class Workout {
+    Id:number;
+    UserId:number;
     sets:Set[]=[];
-    date:Date;
+    setGroups:SetGroup[]=[];
+    WorkoutDate:Date;
     duration:number=0;
 }

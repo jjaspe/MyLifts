@@ -2,22 +2,23 @@ import {Exercise} from "../index"
 
 export var BackExercises:Exercise[]=
 [        
-    {"id":3,"name":"Deadlift","details":[]}
+    {"Id":3,"Name":"Deadlift","details":[]}
 ]
 
 export var ChestExercises:Exercise[]=
 [
-    {"id":1,"name":"Bench Press","details":[{"id":1,"name":"angle","value":"30"}]}
+    {"Id":1,"Name":"Bench Press",
+        "details":[{"id":1,"name":"angle","value":"30"}]}
 ]
 
 export var LegExercises:Exercise[]=
 [
-    {"id":2,"name":"Barbell Squat","details":[]},
-    {"id":3,"name":"Deadlift","details":[]}
+    {"Id":2,"Name":"Barbell Squat","details":[]},
+    {"Id":3,"Name":"Deadlift","details":[]}
 ]
 
 export var BicepsExercises:Exercise[]=
 [
     
-    {"id":4,"name":"Standing Barbell Curl","details":[]}
+    {"Id":4,"Name":"Standing Barbell Curl","details":[]}
 ]

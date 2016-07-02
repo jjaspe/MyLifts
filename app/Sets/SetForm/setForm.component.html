@@ -1,18 +1,23 @@
-<div class="container">
-    <h1>Set Form</h1>
-    <form>        
-      <div class="form-group">
-        <label for="number">Number</label>
-        <input type="text" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="weight">Weight</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="reps">Reps</label>
-        <input type="text" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+<div class="container ">
+  <div class="row">
+    <exercise-selection *ngIf="set" 
+            (exerciseSelected)="onExerciseSelected($event)" 
+            (bodyPartSelected)="onBodyPartSelected($event)">
+    </exercise-selection>
+  
+    <div *ngIf="set && set.exercise" class="col-md-3" >
+      <h2>Set Details</h2>
+      <form >     
+        <div class="form-group">
+          <label for="weight">Weight</label>
+          <input [(ngModel)]="set.Weight" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="reps">Reps</label>
+          <input [(ngModel)]="set.Reps" type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
+      </form>
+    </div>
+  </div>
 </div>

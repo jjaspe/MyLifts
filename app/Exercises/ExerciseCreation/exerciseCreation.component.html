@@ -1,0 +1,23 @@
+<div class="row">
+    <div *ngIf="true" class="col-md-3" >
+        <h2>Exercise Details</h2>
+        <form >     
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input [(ngModel)]="newExercise.Name" type="text" class="form-control">
+            </div>        
+        </form>
+        <br>
+        <div class="chosenBodyParts">
+            <h4><div class="label label-default">Muscle Groups Targeted</div></h4>
+            <h3 *ngFor="let part of chosenBodyParts">
+                <div class="label label-success label-md" (click)="removeBodyPart(part)">
+                    {{part.Name}}
+                </div>
+            </h3>
+        </div>
+    </div>
+    <bodyparts class="col-md-3" (selected)="onBodyPartClicked($event)"></bodyparts>
+    <button class="btn-submit-exercise btn_submit_exercise btn btn-success" (click)="submit()">Done</button>
+</div>
+

@@ -2,32 +2,40 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { User} from "../../User/index"
 import { Workout, WorkoutService } from '../../Workout/index'
 import { NewWorkoutComponent,WorkoutDetailsComponent} from './index'
+import { SetService} from '../../Sets/index'
 
 @Component({
     selector: 'home',
     templateUrl: 'app/App/Home/home.component.html',
-    directives: [NewWorkoutComponent,WorkoutDetailsComponent],
-    providers: [WorkoutService]
+    directives: [NewWorkoutComponent,WorkoutDetailsComponent]
 })
 export class HomeComponent implements OnInit, OnChanges {
-    @Input()
-    user:User;
+    @Input() user:User;
     currentWorkout:Workout;
-    constructor(private workoutService:WorkoutService) { }
+    constructor(private workoutService:WorkoutService, private setService:SetService) { }
 
-    ngOnInit() { 
-        if(this.user){
-            this.workoutService.getWorkoutByDate(this.user,new Date()).then(workout=>{
-                    this.currentWorkout=workout
-                })
-        }
+    ngOnInit() {       
+        this.getWorkout();
     }
     
     ngOnChanges(){
+        this.getWorkout();
+    }
+    
+    getWorkout(){
+        let today:Date=new Date();
         if(this.user){
-            this.workoutService.getWorkoutByDate(this.user,new Date()).then(workout=>{
-                    this.currentWorkout=workout
-                })
+            this.workoutService.getWorkoutByDate(this.user,today).subscribe(workout=>{
+                this.currentWorkout=workout;
+                if(this.currentWorkout){
+                    this.setService.getSetsByWorkout(this.currentWorkout).subscribe(sets=>
+                    {
+                        this.currentWorkout.sets=sets;
+                        this.currentWorkout.setGroups=this.setService.getSetGroups(sets);
+                    })
+                }              
+                
+            })
         }
     }
 

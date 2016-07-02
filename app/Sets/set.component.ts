@@ -5,10 +5,9 @@ import {Component,OnInit,Input} from "@angular/core"
     selector:"set",
     templateUrl:"app/Sets/set.component.html",
     styleUrls:["app/Sets/set.component.css"],
-    directives: []//DetailComponent]
+    directives: [DetailComponent]
 })
 
 export class SetComponent{
-    @Input()
-    set:Set;
+    @Input() set:Set;
 }

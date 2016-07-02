@@ -1,25 +1,8 @@
-.badge {
-    display: inline-block;
+.exercise-button {
+    width: 15rem;
     font-size: medium;
-    color: white;
-    padding: 0.8em 0 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
+    font-weight: bold;
     margin: 0.8em .8em 0 0;
-    border-radius: 4px;
-    width: 10rem;
-}
-
-.badge:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-    cursor: hand;
-    
 }
 
 .nobullets{
@@ -33,7 +16,6 @@ ul.noindent {
     padding-right: 0px;
 }
 
-.col-4-8 {
-    width: 25%;
-    left: 25%;
+span.active{
+    background-color: red;
 }

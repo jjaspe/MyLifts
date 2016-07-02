@@ -1,0 +1,36 @@
+1) Save Workout -- DONE
+    a) Create WorkoutViewModels client and server --DONE
+    b) Create WorkoutService in server -- DONE
+    c) Create Controller methods to save Workout -- DONE
+    d) Verify with Postman -- DONE
+    e) Create WorkoutService in client -- DONE
+    f) Create Button for saving, wire up to client --DONE
+
+
+2) View saved workouts -- DONE
+    a) Create list view for workouts (client)
+    b) Create API call to get sets by workout (server) --DONE
+    c) Turn sets into set groups (client) --DONE
+    d) create service to get sets by workout (client) --DONE
+
+3) Refactor api urls
+    1) WorkoutService -- DONE
+    2) BodypartService -- DONE
+    3) ExerciseService -- DONE
+    4) UserService -- DONE
+    5) SetService -- DONE
+
+4) Refactor to put shared stuff in shared folder 
+    Sets -- DONE
+    User --  DONE
+    Workout --  
+    4.1) Refactor Exercises folder structure
+        Move ExerciseCreation -- DONE
+        Move ExerciseSelection -- DONE
+
+5) Create Users
+
+6) Put on git
+
+7) Deploy to Azure
+

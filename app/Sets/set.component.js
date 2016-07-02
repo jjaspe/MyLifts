@@ -22,7 +22,7 @@ var SetComponent = (function () {
             selector: "set",
             templateUrl: "app/Sets/set.component.html",
             styleUrls: ["app/Sets/set.component.css"],
-            directives: [] //DetailComponent]
+            directives: [index_1.DetailComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], SetComponent);

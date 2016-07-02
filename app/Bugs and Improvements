@@ -1,0 +1,11 @@
+Improvements:
+1) When set added, dont navigate back. 
+2) If workout not saved, keep it in client or warn user
+4) Add Exercises component to exercise creation so you can see the ones that already exist
+5) Don't get all workouts from api, only those for logged user 
+Bugs:
+
+
+
+DONE:
+3) When workout is saved, get list of workouts again. 

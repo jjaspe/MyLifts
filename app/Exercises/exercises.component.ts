@@ -1,6 +1,6 @@
 import {Component,OnInit,OnChanges,Input,SimpleChange, Output, EventEmitter} from "@angular/core"
 import {BodyPart,BodyPartService} from "../BodyParts/index"
-import {Exercise} from "../Exercises/index"
+import {Exercise} from "./shared/index"
 
 @Component({
     selector:'my-exercises',

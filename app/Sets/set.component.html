@@ -1,20 +1,19 @@
 <div *ngIf="set">
-    <div class="col-sm-6">
-        <span>{{set.number}}</span>            
-    </div>
-    <div class="col-sm-6">
-        <span>{{set.exercise.name}}</span>
-    </div>
-    <div class="col-sm-6">
-        {{set.weight}}          
-    </div>
-    <div class="col-sm-6">
-        <span>{{set.reps}}</span>            
-    </div>  
     <div class="row">
-        <div class="col-sm-8"></div>
         <div class="col-sm-4">
-            <my-detail [exercise]="set.exercise.details"></my-detail>
-        </div>        
-    </div>         
+            <span>{{set.Number}}</span>            
+        </div>
+        <div class="col-sm-4">
+            {{set.Weight}}          
+        </div>
+        <div class="col-sm-4">
+            <span>{{set.Reps}}</span>            
+        </div>  
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <my-detail [exercise]="set.Details"></my-detail>
+            </div>        
+        </div>   
+    </div>
 </div>

@@ -1,5 +1,5 @@
+export * from "./workout.service"
 export * from "./Workout"
 export * from "./workout.component"
 export * from "./WorkoutList/workoutList.component"
 export * from "./workout.mock"
-export * from "./workout.service"

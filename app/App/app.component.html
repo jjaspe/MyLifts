@@ -1,9 +1,21 @@
-<h1 class="at_title">{{title}}</h1>
-<dashboard (homeButtonClicked)="goToHome($event)"></dashboard>
-<div class="main at_main ">
-    <div [ngSwitch]="page">
-        <exercise-selection *ngSwitchWhen='1'></exercise-selection>
-        <home [user]="user" *ngSwitchWhen='0'></home>
-    </div>    
-</div>
+<container>
+    <row>        
+        <div class="dashboard col-md-12">
+            <h1 class="at_title app_title">{{title}}</h1>
+            <dashboard (homeButtonClicked)="goToHome($event)" 
+                       (addExercisesClicked)="goToAddExercises($event)"
+                       (workoutsButtonClicked)="goToWorkouts($event)"></dashboard>
+        </div>
+    </row>
+    <div *ngIf="user">Hello {{user.Name}}</div>
+    <row *ngIf="user">
+        <div class="main at_main col-md-12">
+            <div [ngSwitch]="page">
+                <exercise-creation *ngSwitchWhen="constants.AddExercisesPage"></exercise-creation>
+                <home [user]="user" *ngSwitchWhen="constants.HomePage"></home>
+                <workout-list class="col-sm-6" *ngSwitchWhen="constants.WorkoutsPage"></workout-list>
+            </div>    
+        </div>
+    </row>
+</container>
 

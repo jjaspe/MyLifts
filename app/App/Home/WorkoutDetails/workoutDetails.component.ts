@@ -1,32 +1,36 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workout, WorkoutComponent } from '../../../Workout/index'
-import { ExerciseSelectionComponent} from '../../../ExerciseSelection/index'
+import { WorkoutService,Workout, WorkoutComponent } from '../../../Workout/index'
 import { Set,SetFormComponent } from '../../../Sets/index'
-import { Exercise } from '../../../Exercises/index'
+import { User} from '../../../User/index'
 
 @Component({
     selector: 'workout-details',
     templateUrl: 'app/App/Home/WorkoutDetails/workoutDetails.component.html',
-    directives:[ExerciseSelectionComponent,SetFormComponent,WorkoutComponent]
+    directives:[SetFormComponent,WorkoutComponent],
+    styleUrls:['app/App/Home/WorkoutDetails/workoutDetails.component.css']
 })
 export class WorkoutDetailsComponent implements OnInit {
-    @Input()
-    workout:Workout;
+    @Input() workout:Workout;
+    @Input() user:User;
     newSet:Set;
-    @Input()
-    state:string;
+    @Input() state:string;
     
-    constructor() { }
+    constructor(private workoutService:WorkoutService) { }
 
-    ngOnInit() { this.newSet=null}
+    ngOnInit() { this.newSet=null;}
     
     onAddSetButtonClicked(){
         this.newSet=new Set();
+        this.newSet.WorkoutId=this.workout.Id;
         this.state="add";
     }
     
-    onExerciseSelected(exercise:Exercise){        
-        this.newSet.exercise=exercise;
+    saveWorkoutClicked(){
+        this.workoutService.saveWorkout(this.workout);
     }
-
+    
+    setAdded(set:Set){
+        this.workout=this.workoutService.addSetToWorkout(this.workout,this.newSet);
+        this.onAddSetButtonClicked();
+    }
 }

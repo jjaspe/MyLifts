@@ -1,19 +1,12 @@
-<div class="row">
-    <div class="col-sm-6">
-        <span>Set</span>            
-    </div>
-    <div class="col-sm-6">
-        <span>Exercise</span>
-    </div>
-    <div class="col-sm-6">
-        <span>Weight</span>            
-    </div>
-    <div class="col-sm-6">
-        <span>Reps</span>            
+<div class="panel panel-group col-sm-4"> 
+    <div class="panel panel-info">
+        <div class="panel panel-heading">
+            <span>{{setGroup.exercise.Name}}</span>
+        </div>
+        <div class="panel panel-content">   
+            <div *ngFor="let set of (setGroup.Sets | orderSets)">    
+                <set [set]="set"></set>
+            </div>
+        </div>
     </div>
 </div>
-  
-<span *ngFor="let set of sets">
-    <br/>
-    <set [set]="set"></set>
-</span>

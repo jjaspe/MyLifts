@@ -1,4 +1,22 @@
 <div *ngIf="workout" class="workout at_workout">    
-    <span class="at_workout_date workout-date">Date:{{workout.date|date:"MM/dd/yyyy"}}</span>
-    <set-list [sets]="workout.sets"></set-list>
+    <span class="at_workout_date workout-date">Date:{{workout.WorkoutDate|date:"MM/dd/yyyy"}}</span>
+    <br>
+    <div *ngIf="workout.setGroups" class="row">
+        <div class="workout-heading col-sm-4">
+            <div class="col-sm-4">
+                <span>Set</span>            
+            </div>
+            <div class="col-sm-4">
+                <span>Weight</span>            
+            </div>
+            <div class="col-sm-4">
+                <span>Reps</span>            
+            </div>
+        </div>        
+    </div>
+    <br>  
+    <div *ngFor="let setGroup of workout.setGroups">
+        <set-list [setGroup]="setGroup" class="row"></set-list>
+        <br>
+    </div>
 </div>

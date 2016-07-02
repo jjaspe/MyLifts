@@ -1,6 +1,7 @@
 <h2>Workouts</h2>
-<ul class="at_workouts workouts noindent">
-    <li *ngFor="let workout of workouts" class="workout at_workout" (click)="onSelected(workout)">
-        <span class="at_workout_date">{{workout.date}}</span>
-    </li>
-</ul>
+<datepicker [(ngModel)]="selectedDate" (click)="onDateChangedEvent($event)" [customClass]="customClass" 
+        [dateDisabled]="disabledDates"></datepicker> 
+<workout *ngIf="selectedWorkout" [workout]="selectedWorkout"></workout>
+<div *ngIf="!selectedWorkout" class="no-workout">
+    No workout for this date
+</div>

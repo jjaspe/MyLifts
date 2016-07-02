@@ -9,15 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var bodyParts_service_1 = require("./shared/bodyParts.service");
 var BodyPartsComponent = (function () {
-    function BodyPartsComponent() {
+    function BodyPartsComponent(bodyPartService) {
+        this.bodyPartService = bodyPartService;
+        this.title = "Muscle Groups";
         this.bodyparts = [];
+        this.realBodyParts = [];
         this.selected = new core_1.EventEmitter();
     }
     BodyPartsComponent.prototype.onSelected = function (bodypart) {
         this.selected.emit(bodypart);
     };
     BodyPartsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.bodyPartService.getBodyParts().subscribe(function (n) { return _this.setRealBodyParts(n); }, function (error) { return console.log(error); });
+    };
+    BodyPartsComponent.prototype.setRealBodyParts = function (bodyparts) {
+        bodyparts.forEach(function (n) { return n.Exercises = []; });
+        this.realBodyParts = bodyparts;
     };
     __decorate([
         core_1.Input(), 
@@ -29,11 +39,11 @@ var BodyPartsComponent = (function () {
     ], BodyPartsComponent.prototype, "selected", void 0);
     BodyPartsComponent = __decorate([
         core_1.Component({
-            selector: "my-bodyparts",
+            selector: "bodyparts",
             templateUrl: "app/BodyParts/bodyParts.component.html",
             styleUrls: ["app/BodyParts/bodyParts.component.css"]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [bodyParts_service_1.BodyPartService])
     ], BodyPartsComponent);
     return BodyPartsComponent;
 }());
