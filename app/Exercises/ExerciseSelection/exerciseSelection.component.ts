@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BodyPartService, BodyPartsComponent, BodyPart} from '../../BodyParts/index'
 import { ExerciseService, Exercise} from '../shared/index'
-import { ExercisesComponent } from '../exercises.component'
 import { ExerciseListComponent } from '../ExerciseList/exerciseList.component'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
@@ -10,7 +9,7 @@ import {} from 'bootstrapui/common';
 @Component({
     selector: 'exercise-selection',
     templateUrl: 'app/Exercises/ExerciseSelection/exerciseSelection.component.html',
-    directives: [BodyPartsComponent, ExercisesComponent, ExerciseListComponent],
+    directives: [BodyPartsComponent, ExerciseListComponent],
     styleUrls: ['app/App/app.component.css']
 })
 export class ExerciseSelectionComponent implements OnInit {
