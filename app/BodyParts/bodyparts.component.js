@@ -26,7 +26,7 @@ var BodyPartsComponent = (function () {
         this.bodyPartService.getBodyParts().subscribe(function (n) { return _this.setRealBodyParts(n); }, function (error) { return console.log(error); });
     };
     BodyPartsComponent.prototype.setRealBodyParts = function (bodyparts) {
-        bodyparts.forEach(function (n) { return n.Exercises = []; });
+        bodyparts.forEach(function (n) { return n.exercises = []; });
         this.realBodyParts = bodyparts;
     };
     __decorate([

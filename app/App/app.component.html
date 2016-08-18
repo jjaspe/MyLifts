@@ -7,7 +7,7 @@
                        (workoutsButtonClicked)="goToWorkouts($event)"></dashboard>
         </div>
     </row>
-    <div *ngIf="user">Hello {{user.Name}}</div>
+    <div *ngIf="user && user.FirstName">Hello {{user.FirstName}}</div>
     <row *ngIf="user">
         <div class="main at_main col-md-12">
             <div [ngSwitch]="page">

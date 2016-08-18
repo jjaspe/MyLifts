@@ -1,3 +1,5 @@
+USING .NET API
+
 1) Save Workout -- DONE
     a) Create WorkoutViewModels client and server --DONE
     b) Create WorkoutService in server -- DONE
@@ -33,4 +35,10 @@
 6) Put on git
 
 7) Deploy to Azure
+
+
+----------------------------------------------------------------------------------------------------------------------
+Using Node.js API
+1) Save workout
+2) Style Exercises list
 

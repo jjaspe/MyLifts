@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
 import { MockUsers} from './index' 
-import { Http, Response } from '@angular/http';
 import { Observable,Subject}  from 'rxjs/Rx';
 import { User} from './User'
-import { SessionService} from '../../Session/session.service'
+import { SessionService} from '../../Session/session.service';
+import { HttpService } from '../../Utilities/http.service';
 
 @Injectable()
 export class UserService {
     loggedInUser:Subject<User>;
     inMemoryUser:User;
-    getUsersUrl:string="/Users"
-    getUserByUsernameUrl:string="/Users/GetUser?username=";
-    postUserUrl:string="/Users/PostUser?name={0}&username={1}"
-    constructor(private http: Http, private sessionService:SessionService) { 
+    usersUrl:string="/Users/"
+    constructor(private httpService:HttpService,private sessionService:SessionService) { 
         this.loggedInUser=<Subject<User>> new Subject();
     }
     
     initUrls(){
-        this.getUsersUrl=this.sessionService.session.ApiUrl+this.getUsersUrl;
-        this.getUserByUsernameUrl=this.sessionService.session.ApiUrl+this.getUserByUsernameUrl;
-        this.postUserUrl=this.sessionService.session.ApiUrl+this.postUserUrl;
+        this.usersUrl=this.sessionService.session.ApiUrl+this.usersUrl;
     }
     
     getUsers(){
-        return this.http.get(this.getUsersUrl).map(this.extractUserData).catch(this.handleError);
+        return this.httpService.get(this.usersUrl);
     }
     
     getUserByUsername(username:string){
-        let fullUrl=this.getUserByUsernameUrl+username;
-        return this.http.get(fullUrl).map(this.extractUserData).catch(this.handleError);
+        let fullUrl=this.usersUrl+username;
+        return this.httpService.get(fullUrl);
     }
     
     getUser(index:number){
@@ -39,40 +35,26 @@ export class UserService {
         return this.loggedInUser.asObservable();
     }
     
-    extractUserData(res:Response){
-        let body = res.json();
-        return body || { };
-    }
-    
     clearLoggedInUser(){
         this.inMemoryUser=null;
+        this.loggedInUser=<Subject<User>> new Subject();
         this.loggedInUser.next(this.inMemoryUser);
     }
     
     setLoggedInUser(username:string){
         this.getUserByUsername(username).subscribe(a=>{
-            if(a){
-                this.inMemoryUser=a;
-                this.loggedInUser.next(this.inMemoryUser);
-            }
-        })
-    }
-    
-    signUpUser(username:string,name:string){
-        let fullUrl=this.postUserUrl.replace("{0}",name).replace("{1}",name);
-        this.http.post(fullUrl,"").map(this.extractUserData).catch(this.handleError).subscribe(a=>{
-            if(a){
-                this.inMemoryUser=a;
-                this.loggedInUser.next(this.inMemoryUser);
-            }
+            this.inMemoryUser=a;
+            this.loggedInUser.next(this.inMemoryUser);
         });
     }
     
-    private handleError (error: any) {
-        let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg);
-        return Observable.throw(errMsg);
+    signInUser(username:string,name:string){
+        let fullUrl=this.usersUrl;        
+        let user=new User();
+        user.UserName=username;
+        user.FirstName=username;
+        this.httpService.post(fullUrl,user).subscribe(a=>{  
+            this.setLoggedInUser(username);
+        });
     }
-
 }

@@ -28,7 +28,7 @@ export class BodyPartsComponent implements OnInit{
     }
     
     setRealBodyParts(bodyparts:BodyPart[]){
-        bodyparts.forEach(n=>n.Exercises=[]);
+        bodyparts.forEach(n=>n.exercises=[]);
         this.realBodyParts=bodyparts;
     }
 }

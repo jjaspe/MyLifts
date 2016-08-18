@@ -10,27 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var index_1 = require("../Sets/shared/index");
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var Rx_1 = require("rxjs/Rx");
 var session_service_1 = require('../Session/session.service');
+var http_service_1 = require('../Utilities/http.service');
 var WorkoutService = (function () {
-    function WorkoutService(http, setService, sessionService) {
-        this.http = http;
+    function WorkoutService(httpService, setService, sessionService) {
+        this.httpService = httpService;
         this.setService = setService;
         this.sessionService = sessionService;
-        this.getWorkoutsUrl = "/Workouts";
+        this.getWorkoutsUrl = "/Workouts/";
         this.getWorkoutsByUserUrl = "/Workouts/GetWorkoutsByUser";
-        this.postWorkoutUrl = "/Workouts/Post";
         this.workouts = [];
     }
     WorkoutService.prototype.initUrls = function () {
         this.getWorkoutsUrl = this.sessionService.session.ApiUrl + this.getWorkoutsUrl;
         this.getWorkoutsByUserUrl = this.sessionService.session.ApiUrl + this.getWorkoutsByUserUrl;
-        this.postWorkoutUrl = this.sessionService.session.ApiUrl + this.postWorkoutUrl;
     };
     WorkoutService.prototype.fixWorkoutDates = function () {
         this.workouts.forEach(function (el) {
-            el.WorkoutDate = new Date(el.WorkoutDate.toString());
+            el.WorkoutDate = el.WorkoutDate ? new Date(el.WorkoutDate.toString()) : new Date();
         });
     };
     WorkoutService.prototype.fetchWorkouts = function () {
@@ -41,21 +39,17 @@ var WorkoutService = (function () {
         });
     };
     WorkoutService.prototype.getWorkoutsFromAPI = function () {
-        return this.http.get(this.getWorkoutsUrl).map(this.extractWorkoutData.bind(this)).catch(this.handleError);
+        return this.httpService.get(this.getWorkoutsUrl);
     };
     WorkoutService.prototype.getWorkouts = function () {
         return Rx_1.Observable.of(this.workouts);
-    };
-    WorkoutService.prototype.extractWorkoutData = function (res) {
-        var body = res.json();
-        return body || {};
     };
     WorkoutService.prototype.getWorkoutByDate = function (user, date) {
         var _this = this;
         date = date || new Date();
         if (user) {
             var userWorkouts = this.workouts.filter(function (a) { return a.UserId === user.Id; });
-            if (userWorkouts) {
+            if (userWorkouts && userWorkouts.length > 0) {
                 var workout_1 = userWorkouts.filter(function (m) { return _this.compareDates(m.WorkoutDate, date); })[0];
                 if (workout_1 && (!workout_1.setGroups || workout_1.setGroups.length == 0)) {
                     this.setService.getSetsByWorkout(workout_1).subscribe(function (n) { return workout_1.setGroups = _this.setService.getSetGroups(n); });
@@ -97,19 +91,8 @@ var WorkoutService = (function () {
             return null;
     };
     WorkoutService.prototype.saveWorkout = function (workout) {
-        var body = JSON.stringify(workout);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        this.http.post(this.postWorkoutUrl, body, options)
-            .map(function (res) { return console.log(res); })
-            .catch(this.handleError).subscribe(function (a) { });
-        this.fetchWorkouts();
-    };
-    WorkoutService.prototype.handleError = function (error) {
-        var errMsg = (error.message) ? error.message :
-            error.status ? error.status + " - " + error.statusText : 'Server error';
-        console.error("Error:" + errMsg);
-        return Rx_1.Observable.throw(errMsg);
+        var _this = this;
+        this.httpService.post(this.getWorkoutsUrl, workout).subscribe(function (a) { return _this.fetchWorkouts(); });
     };
     WorkoutService.prototype.getExerciseHistory = function (workouts, exercise) {
         var workoutsWithExercise = workouts.filter(function (n) {
@@ -121,22 +104,20 @@ var WorkoutService = (function () {
         if (!workout.setGroups) {
             workout.setGroups = [];
         }
-        if (workout.setGroups) {
-            var group = workout.setGroups.filter(function (n) { return n.exercise.Name == set.exercise.Name; })[0];
-            if (group) {
-                set.Number = group.Sets.length + 1;
-                group.Sets.push(set);
-            }
-            else {
-                set.Number = 1;
-                workout.setGroups.push({ exercise: set.exercise, Sets: [set] });
-            }
+        var group = workout.setGroups.filter(function (n) { return n.exercise.Name == set.exercise.Name; })[0];
+        if (group) {
+            set.Number = group.Sets.length + 1;
+            group.Sets.push(set);
+        }
+        else {
+            set.Number = 1;
+            workout.setGroups.push({ exercise: set.exercise, Sets: [set] });
         }
         return workout;
     };
     WorkoutService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, index_1.SetService, session_service_1.SessionService])
+        __metadata('design:paramtypes', [http_service_1.HttpService, index_1.SetService, session_service_1.SessionService])
     ], WorkoutService);
     return WorkoutService;
 }());

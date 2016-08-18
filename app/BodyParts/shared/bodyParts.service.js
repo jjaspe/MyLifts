@@ -24,7 +24,7 @@ var BodyPartService = (function () {
     BodyPartService.prototype.initUrls = function () {
         var _this = this;
         this.url = this.sessionService.session.ApiUrl + this.url;
-        this.getBodyParts().subscribe(function (n) { return _this.bodyParts = n; });
+        this.getBodyParts().subscribe(function (n) { return _this.bodyParts; });
     };
     BodyPartService.prototype.getBodyParts = function () {
         return this.http.get(this.url).map(this.extractBodyPartData.bind(this)).catch(this.handleError);
@@ -52,7 +52,7 @@ var BodyPartService = (function () {
     };
     BodyPartService.prototype.getExercisesFromBodyPart = function (bodypart) {
         if (bodypart)
-            return this.bodyParts.filter(function (n) { return n.Id === bodypart.Id; })[0].Exercises;
+            return this.bodyParts.filter(function (n) { return n.Id === bodypart.Id; })[0].exercises;
     };
     BodyPartService = __decorate([
         core_1.Injectable(), 

@@ -4,49 +4,39 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Exercise } from './Exercise'
 import { ExerciseWithBodyParts} from './ExerciseWithBodyParts'
 import { SessionService } from '../../Session/index'
+import { HttpService } from '../../Utilities/http.service'
 
 @Injectable()
 export class ExerciseService{
-    getExercisesUrl:string="/Exercises";
-    postExerciseUrl:string="/Exercises/Post"
-    exercises:Exercise[]=[]
+    exercisesUrl:string="/Exercises";
+    exercises:Exercise[]=[];
     
-    constructor(private http: Http,private sessionService:SessionService){}
+    constructor(private httpService:HttpService,private sessionService:SessionService){}
     
     initUrls(){
-        this.getExercisesUrl=this.sessionService.session.ApiUrl+this.getExercisesUrl;
-        this.postExerciseUrl=this.sessionService.session.ApiUrl+this.postExerciseUrl;
+        this.exercisesUrl=this.sessionService.session.ApiUrl+this.exercisesUrl;
         this.getExercises().subscribe(n=>this.exercises=n);
     }
+    
     getExercises() : Observable<Exercise[]>{
-        return this.http.get(this.getExercisesUrl).map(this.extractExerciseData).catch(this.handleError);
+        return this.httpService.get(this.exercisesUrl);
     }
     
     getExercise(id:number){
         return Promise.resolve(this.exercises.filter(n=>n.Id==id)[0]);
     }
     
-    saveExercise(exWithBp:ExerciseWithBodyParts){
-        let body=JSON.stringify(exWithBp);
-        let headers= new Headers({ 'Content-Type': 'application/json' });
-        let options= new RequestOptions({headers:headers}); 
-        this.http.post(this.postExerciseUrl,body,options)
-                .map((res:Response)=>console.log(res))
-                .catch(this.handleError).subscribe(r=>{});
+    saveExercise(exWithBp:ExerciseWithBodyParts):Observable<Response>{
+        return this.httpService.post(this.exercisesUrl,exWithBp);
     }
     
-    private extractExerciseData(res: Response) {
+    deleteExercise(exercise:Exercise){
+        
+    }
+    
+    setDetails(res:Response){
         let body = res.json();
         let exercises=[];
         body.forEach(n=>n.Details=[]);
-        return body || { };
-    }
-    
-    private handleError (error: any) {
-        let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error("Error:"+errMsg);
-        return Observable.throw(errMsg);
-    }
-    
+    }    
 }

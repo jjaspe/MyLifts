@@ -17,7 +17,13 @@
             </h3>
         </div>
     </div>
-    <bodyparts class="col-md-3" (selected)="onBodyPartClicked($event)"></bodyparts>
-    <button class="btn-submit-exercise btn_submit_exercise btn btn-success" (click)="submit()">Done</button>
+    <bodyparts class="col-md-3" (selected)="onBodyPartClicked($event)"></bodyparts>    
+    <exercise-list [exercises]="exercises" (selected)="onExerciseSelected($event)"></exercise-list>
+</div>
+<div class="row"> 
+    <button class="btn-submit-exercise btn_submit_exercise btn btn-success" (click)="submit()">Create</button>
+    <button class="btn-error-exercise btn_delete_exercise btn btn-error" (click)="deleteExercise()">
+        Delete
+    </button>
 </div>
 

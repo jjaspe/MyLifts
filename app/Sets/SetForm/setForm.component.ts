@@ -32,7 +32,6 @@ export class SetFormComponent implements OnInit {
                 this.set.Reps = 0;
             }
         }
-            
     }
     
     onBodyPartSelected(bodypart:BodyPart){

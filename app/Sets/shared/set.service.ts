@@ -8,7 +8,7 @@ import { SessionService } from "../../Session/index"
 
 @Injectable()
 export class SetService {    
-    getSetsByWorkoutUrl:string="/Sets/GetSets";
+    getSetsByWorkoutUrl:string="/Sets/";
     constructor(private http: Http, private sessionService:SessionService) { }
     
     initUrls(){
@@ -17,11 +17,13 @@ export class SetService {
     
     getSetsByWorkout(workout:Workout){
         let params: URLSearchParams = new URLSearchParams;
-        params.set("workoutId", workout.Id.toString());
+        if(workout){
+            params.set("workoutId", workout.Id.toString());
 
-        return  this.http.get(this.getSetsByWorkoutUrl,{
+            return  this.http.get(this.getSetsByWorkoutUrl,{
                                 search: params}).
             map(this.extractSetsData).catch(this.handleError);
+        }
     }
     
     extractSetsData(res:Response){

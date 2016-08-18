@@ -19,6 +19,7 @@ var index_5 = require('../Session/index');
 var index_6 = require('../BodyParts/index');
 var index_7 = require('../Exercises/index');
 var auth_service_1 = require('../auth/auth.service');
+var http_service_1 = require('../Utilities/http.service');
 var AppComponent = (function () {
     function AppComponent(userService, workoutService, sessionService, bodyPartService, exerciseService, setService, elementRef) {
         this.userService = userService;
@@ -38,7 +39,7 @@ var AppComponent = (function () {
         this.sessionService.session.ApiUrl = native.getAttribute('apiUrl');
         this.initServiceUrls();
         this.userService.getLoggedInUser().subscribe(function (a) {
-            return _this.user = a;
+            _this.user = a;
         });
         this.workoutService.fetchWorkouts();
     };
@@ -71,7 +72,7 @@ var AppComponent = (function () {
             templateUrl: "app/App/app.component.html",
             styleUrls: ["app/App/app.component.css"],
             providers: [index_2.UserService, index_4.WorkoutService, Index_1.SetService, index_5.SessionService, index_6.BodyPartService,
-                index_7.ExerciseService, auth_service_1.Auth],
+                index_7.ExerciseService, auth_service_1.Auth, http_service_1.HttpService],
             directives: [index_1.ExerciseSelectionComponent, index_3.DashboardComponent, index_3.HomeComponent,
                 index_7.ExerciseCreationComponent, index_4.WorkoutListComponent],
         }), 

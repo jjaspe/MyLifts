@@ -1,0 +1,23 @@
+import {Component,OnInit,OnChanges,Input,SimpleChange, Output, EventEmitter} from "@angular/core"
+import {Exercise} from "../shared/index"
+
+@Component({
+    selector:'exercise-list',
+    templateUrl:"app/Exercises/ExerciseList/exerciseList.component.html",
+    styleUrls:["app/Exercises/exercises.component.css"]
+})
+
+export class ExerciseListComponent {
+    title:string="Exercises";
+    @Output() selected=new EventEmitter<Exercise>()
+    selectedExercise:Exercise;    
+    @Input() exercises:Exercise[];
+    
+    constructor(){  
+    }
+    
+    onExerciseSelected(exercise:Exercise){
+        this.selectedExercise=exercise;
+        this.selected.emit(exercise);
+    }
+}

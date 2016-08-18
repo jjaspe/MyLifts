@@ -10,13 +10,14 @@ import { SessionService } from '../Session/index'
 import { BodyPartService} from '../BodyParts/index'
 import { ExerciseService, ExerciseCreationComponent } from '../Exercises/index'
 import { Auth } from '../auth/auth.service'
+import { HttpService} from '../Utilities/http.service'
 
 @Component({
     selector: 'my-app',
     templateUrl: "app/App/app.component.html",
     styleUrls: ["app/App/app.component.css"],
     providers: [UserService, WorkoutService, SetService, SessionService, BodyPartService,
-        ExerciseService, Auth],
+        ExerciseService, Auth,HttpService],
     directives: [ExerciseSelectionComponent, DashboardComponent, HomeComponent,
         ExerciseCreationComponent, WorkoutListComponent],
 })
@@ -38,8 +39,9 @@ export class AppComponent implements OnInit {
         let native = this.elementRef.nativeElement;
         this.sessionService.session.ApiUrl = native.getAttribute('apiUrl');
         this.initServiceUrls();
-        this.userService.getLoggedInUser().subscribe(a =>
-            this.user = a);
+        this.userService.getLoggedInUser().subscribe(a =>{
+            this.user = a;
+        });
         this.workoutService.fetchWorkouts();
     }
 

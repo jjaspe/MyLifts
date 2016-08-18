@@ -31,8 +31,7 @@ export class Auth {
           alert(error);
           return;
         }else{
-            this.userService.signUpUser(profile.Name,profile.email)
-            this.userService.setLoggedInUser(profile.email)
+            this.userService.signInUser(profile.email,profile.Name);
         }
 
         localStorage.setItem('profile', JSON.stringify(profile));
