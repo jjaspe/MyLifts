@@ -30,15 +30,21 @@ USING .NET API
         Move ExerciseCreation -- DONE
         Move ExerciseSelection -- DONE
 
-5) Create Users
+5) Create Users -- DONE
 
 6) Put on git
-
-7) Deploy to Azure
 
 
 ----------------------------------------------------------------------------------------------------------------------
 Using Node.js API
-1) Save workout
-2) Style Exercises list
+ - Save workout
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ - Style Exercises list -- DONE
 

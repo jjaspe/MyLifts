@@ -8,7 +8,7 @@ import {Exercise} from "../shared/index"
 })
 
 export class ExerciseListComponent {
-    title:string="Exercises";
+    @Input() title:string="Exercises";
     @Output() selected=new EventEmitter<Exercise>()
     selectedExercise:Exercise;    
     @Input() exercises:Exercise[];

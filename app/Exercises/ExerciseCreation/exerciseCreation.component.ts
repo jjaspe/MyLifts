@@ -15,7 +15,6 @@ export class ExerciseCreationComponent implements OnInit {
     newExercise:Exercise;
     chosenBodyParts:BodyPart[]=[];
     selectedExercise:Exercise;
-    //exercises:Observable<Exercise[]>;
     exercises:Exercise[];
     @Output() exerciseCreated=new EventEmitter<ExerciseWithBodyParts>();
     
@@ -28,7 +27,6 @@ export class ExerciseCreationComponent implements OnInit {
         this.bodyPartService.getBodyParts().subscribe(n=>this.bodyparts=n);
         this.exerciseService.getExercises().subscribe(n=>{
             this.exercises=n;
-            console.log(n);
         });
     }
     
