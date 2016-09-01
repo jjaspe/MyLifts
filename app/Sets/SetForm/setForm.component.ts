@@ -24,12 +24,15 @@ export class SetFormComponent implements OnInit {
             let lastSimilarSet:Set=this.workoutService.getLastSetOfExercise(this.user,exercise);
             this.set.exercise=exercise;
             if(lastSimilarSet){
-                this.set.Weight = lastSimilarSet.Weight;
-                this.set.Reps = lastSimilarSet.Reps;
+                console.log({"set weight and reps":lastSimilarSet});
+                this.set.weight = lastSimilarSet.weight;
+                this.set.reps = lastSimilarSet.reps;
+                this.set.number = lastSimilarSet.number+1;
             }
             else{
-                this.set.Weight = 0;
-                this.set.Reps = 0;
+                this.set.weight = 0;
+                this.set.reps = 0;
+                this.set.number=0;
             }
         }
     }

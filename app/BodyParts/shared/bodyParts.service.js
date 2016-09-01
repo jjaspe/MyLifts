@@ -52,7 +52,7 @@ var BodyPartService = (function () {
     };
     BodyPartService.prototype.getExercisesFromBodyPart = function (bodypart) {
         if (bodypart)
-            return this.bodyParts.filter(function (n) { return n.Id === bodypart.Id; })[0].exercises;
+            return this.bodyParts.find(function (n) { return n.Id === bodypart.Id; }).exercises;
     };
     BodyPartService = __decorate([
         core_1.Injectable(), 

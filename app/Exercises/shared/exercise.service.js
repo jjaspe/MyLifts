@@ -27,7 +27,7 @@ var ExerciseService = (function () {
         return this.httpService.get(this.exercisesUrl);
     };
     ExerciseService.prototype.getExercise = function (id) {
-        return Promise.resolve(this.exercises.filter(function (n) { return n.Id == id; })[0]);
+        return Promise.resolve(this.exercises.find(function (n) { return n.Id == id; }));
     };
     ExerciseService.prototype.saveExercise = function (exWithBp) {
         return this.httpService.post(this.exercisesUrl, exWithBp);

@@ -23,7 +23,7 @@ var BodyPartsComponent = (function () {
     };
     BodyPartsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.bodyPartService.getBodyParts().subscribe(function (n) { return _this.setRealBodyParts(n); }, function (error) { return console.log(error); });
+        this.bodyPartService.getBodyParts().subscribe(function (n) { return _this.setRealBodyParts(n); });
     };
     BodyPartsComponent.prototype.setRealBodyParts = function (bodyparts) {
         bodyparts.forEach(function (n) { return n.exercises = []; });

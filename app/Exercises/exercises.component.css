@@ -19,3 +19,10 @@ ul.noindent {
 span.active{
     background-color: red;
 }
+
+.exercise-list{
+    max-height:40rem;/*The important part*/
+    max-width:20rem;
+    overflow-y:auto;/*Also...*/
+    overflow-x:hidden;/*And the end of the important part*/
+}

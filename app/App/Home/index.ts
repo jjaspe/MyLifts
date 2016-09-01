@@ -1,2 +1,1 @@
-export * from "./WorkoutDetails/workoutDetails.component"
-export * from "./NewWorkout/newWorkout.component"
+export * from "./home.component"

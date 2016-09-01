@@ -48,7 +48,7 @@ export class BodyPartService {
 
     getExercisesFromBodyPart(bodypart: BodyPart) {
         if (bodypart)
-            return this.bodyParts.filter(n => n.Id === bodypart.Id)[0].exercises;
+            return this.bodyParts.find(n => n.Id === bodypart.Id).exercises;
     }
 }
 

@@ -9,7 +9,7 @@ import {Exercise} from "../shared/index"
 
 export class ExerciseListComponent {
     @Input() title:string="Exercises";
-    @Output() selected=new EventEmitter<Exercise>()
+    @Output() exerciseSelected=new EventEmitter<Exercise>()
     selectedExercise:Exercise;    
     @Input() exercises:Exercise[];
     
@@ -18,6 +18,6 @@ export class ExerciseListComponent {
     
     onExerciseSelected(exercise:Exercise){
         this.selectedExercise=exercise;
-        this.selected.emit(exercise);
+        this.exerciseSelected.emit(exercise);
     }
 }

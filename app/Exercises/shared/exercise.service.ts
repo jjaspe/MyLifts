@@ -23,7 +23,7 @@ export class ExerciseService{
     }
     
     getExercise(id:number){
-        return Promise.resolve(this.exercises.filter(n=>n.Id==id)[0]);
+        return Promise.resolve(this.exercises.find(n=>n.Id==id));
     }
     
     saveExercise(exWithBp:ExerciseWithBodyParts):Observable<Response>{

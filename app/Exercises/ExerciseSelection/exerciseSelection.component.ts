@@ -29,7 +29,7 @@ export class ExerciseSelectionComponent implements OnInit {
     }
 
     onBodyPartSelected(bodypart: BodyPart) {
-        this.selectedBodyPart = this.bodyparts.filter(n => n.Id == bodypart.Id)[0];
+        this.selectedBodyPart = this.bodyparts.find(n => n.Id == bodypart.Id);
         this.bodyPartSelected.emit(this.selectedBodyPart);
         this.exercisesShown = this.selectedBodyPart.exercises;
         if (bodypart.exercises[0])

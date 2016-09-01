@@ -4,13 +4,15 @@ import { Observable,Subject}  from 'rxjs/Rx';
 import { User} from './User'
 import { SessionService} from '../../Session/session.service';
 import { HttpService } from '../../Utilities/http.service';
+import { WorkoutService } from '../../Workout/shared/workout.service';
 
 @Injectable()
 export class UserService {
     loggedInUser:Subject<User>;
     inMemoryUser:User;
     usersUrl:string="/Users/"
-    constructor(private httpService:HttpService,private sessionService:SessionService) { 
+    constructor(private httpService:HttpService,private sessionService:SessionService,
+            private workoutService:WorkoutService) { 
         this.loggedInUser=<Subject<User>> new Subject();
     }
     
@@ -45,6 +47,7 @@ export class UserService {
         this.getUserByUsername(username).subscribe(a=>{
             this.inMemoryUser=a;
             this.loggedInUser.next(this.inMemoryUser);
+            this.workoutService.setUser(this.inMemoryUser);
         });
     }
     

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { User} from "../../User/index"
 import { Workout, WorkoutService } from '../../Workout/index'
-import { NewWorkoutComponent,WorkoutDetailsComponent} from './index'
+import { NewWorkoutComponent,WorkoutDetailsComponent} from '../../Workout/index'
 import { SetService} from '../../Sets/index'
 
 @Component({
@@ -25,17 +25,7 @@ export class HomeComponent implements OnInit, OnChanges {
     getWorkout(){
         let today:Date=new Date();
         if(this.user){
-            this.workoutService.getWorkoutByDate(this.user,today).subscribe(workout=>{
-                this.currentWorkout=workout;
-                if(this.currentWorkout){
-                    this.setService.getSetsByWorkout(this.currentWorkout).subscribe(sets=>
-                    {
-                        this.currentWorkout.sets=sets;
-                        this.currentWorkout.setGroups=this.setService.getSetGroups(sets);
-                    })
-                }              
-                
-            })
+            this.currentWorkout = this.workoutService.getLoggedInUserWorkoutByDate(today);
         }
     }
 

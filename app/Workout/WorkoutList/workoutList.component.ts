@@ -35,10 +35,10 @@ export class WorkoutListComponent implements OnInit {
         this.workouts = workouts;
         workouts.forEach(n => {
             this.customClass.push({
-                date: this.flattenDate(n.WorkoutDate), mode: "day",
+                date: this.flattenDate(n.workoutDate), mode: "day",
                 clazz: "has-workout"
             });
-            this.disabledDates.push({ date: this.flattenDate(n.WorkoutDate), mode: "day" });
+            this.disabledDates.push({ date: this.flattenDate(n.workoutDate), mode: "day" });
         })
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workout} from './index'
+import { Workout} from './shared/index'
 import { Set, SetComponent, SetListComponent } from "../Sets/index"
 
 @Component({

@@ -1,20 +1,21 @@
 <div class="container ">
   <div class="row">
-    <exercise-selection *ngIf="set" 
-            (exerciseSelected)="onExerciseSelected($event)" 
-            (bodyPartSelected)="onBodyPartSelected($event)">
-    </exercise-selection>
-  
+    <div class="col-md-6">
+      <exercise-selection *ngIf="set"
+              (exerciseSelected)="onExerciseSelected($event)" 
+              (bodyPartSelected)="onBodyPartSelected($event)">
+      </exercise-selection>
+    </div>
     <div *ngIf="set && set.exercise" class="col-md-3" >
       <h2>Set Details</h2>
-      <form >     
+      <form >    
         <div class="form-group">
           <label for="weight">Weight</label>
-          <input [(ngModel)]="set.Weight" type="text" class="form-control">
+          <input [(ngModel)]="set.weight" type="text" class="form-control">
         </div>
         <div class="form-group">
           <label for="reps">Reps</label>
-          <input [(ngModel)]="set.Reps" type="text" class="form-control">
+          <input [(ngModel)]="set.reps" type="text" class="form-control">
         </div>
         <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
       </form>

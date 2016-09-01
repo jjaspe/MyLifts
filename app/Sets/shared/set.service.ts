@@ -20,9 +20,8 @@ export class SetService {
         if(workout){
             params.set("workoutId", workout.Id.toString());
 
-            return  this.http.get(this.getSetsByWorkoutUrl,{
-                                search: params}).
-            map(this.extractSetsData).catch(this.handleError);
+            return  this.http.get(
+                this.getSetsByWorkoutUrl,{search: params}).map(this.extractSetsData).catch(this.handleError);
         }
     }
     
@@ -41,7 +40,7 @@ export class SetService {
     getSetGroups(sets:Set[]){
         let setGroups:SetGroup[]=[];
         for(var set of sets){
-            let setGroup=setGroups.filter(n=>n.exercise.Name==set.exercise.Name)[0]
+            let setGroup=setGroups.find(n=>n.exercise.Name==set.exercise.Name)
             if(setGroup){
                 setGroup.Sets.push(set)
             }else{

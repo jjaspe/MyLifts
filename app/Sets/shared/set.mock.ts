@@ -2,8 +2,8 @@ import { Set,SetGroup } from "../index"
 import {BackExercises,ChestExercises,LegExercises} from "../../Exercises/index"
 
 export var MockSets:Set[] = [
-    {WorkoutId:0,exercise:BackExercises[0],Reps:6,Number:1,Weight:180,Details:[]},
-    {WorkoutId:0,exercise:BackExercises[0],Reps:6,Number:2,Weight:180,Details:[]}
+    {workoutId:0,exercise:BackExercises[0],reps:6,number:1,weight:180,details:[]},
+    {workoutId:0,exercise:BackExercises[0],reps:6,number:2,weight:180,details:[]}
 ]
 
 export var MockSetGroups:SetGroup[] = [

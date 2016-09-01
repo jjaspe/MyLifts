@@ -34,10 +34,10 @@ var WorkoutListComponent = (function () {
         this.workouts = workouts;
         workouts.forEach(function (n) {
             _this.customClass.push({
-                date: _this.flattenDate(n.WorkoutDate), mode: "day",
+                date: _this.flattenDate(n.workoutDate), mode: "day",
                 clazz: "has-workout"
             });
-            _this.disabledDates.push({ date: _this.flattenDate(n.WorkoutDate), mode: "day" });
+            _this.disabledDates.push({ date: _this.flattenDate(n.workoutDate), mode: "day" });
         });
     };
     WorkoutListComponent.prototype.flattenDate = function (date) {

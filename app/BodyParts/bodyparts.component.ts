@@ -23,8 +23,7 @@ export class BodyPartsComponent implements OnInit{
     
     ngOnInit(){
         this.bodyPartService.getBodyParts().subscribe
-            (n=>this.setRealBodyParts(n),
-             error=>console.log(error));
+            (n=>this.setRealBodyParts(n));
     }
     
     setRealBodyParts(bodyparts:BodyPart[]){

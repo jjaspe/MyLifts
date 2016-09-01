@@ -1,10 +1,10 @@
-import {Set,SetGroup} from "../Sets/index"
+import {Set,SetGroup} from "../../Sets/index"
 
 export class Workout {
     Id:number;
-    UserId:number;
+    userId:number;
     sets:Set[]=[];
     setGroups:SetGroup[]=[];
-    WorkoutDate:Date;
+    workoutDate:Date;
     duration:number=0;
 }

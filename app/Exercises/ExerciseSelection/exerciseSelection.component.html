@@ -1,8 +1,9 @@
-<div class="col-md-3 ">
-    <bodyparts  [bodyparts]="bodyparts" (selected)="onBodyPartSelected($event)"></bodyparts>
+<div *ngIf="bodyparts" class="exerciseSelection row">
+    <div class="col-md-6 ">
+        <bodyparts  [bodyparts]="bodyparts" (selected)="onBodyPartSelected($event)"></bodyparts>
+    </div>
+    <div class="col-md-6 ">
+        <exercise-list [exercises]="exercisesShown"  (exerciseSelected)="onExerciseSelected($event)"></exercise-list>
+    </div> 
 </div>
-<div class="col-md-3 ">
-    <!--<my-exercises [selectedBodyPart]="selectedBodyPart" 
-    (exerciseSelected)="onExerciseSelected($event)"></my-exercises>-->
-    <exercise-list [exercises]="exercisesShown"  (exerciseSelected)="onExerciseSelected($event)"></exercise-list>
-</div> 
+

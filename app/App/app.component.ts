@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
         this.userService.getLoggedInUser().subscribe(a =>{
             this.user = a;
         });
-        this.workoutService.fetchWorkouts();
+        this.workoutService.fetchWorkouts();        
     }
 
     initServiceUrls() {

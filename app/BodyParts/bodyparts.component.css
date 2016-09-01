@@ -30,6 +30,9 @@
 
 .bodyparts {
     list-style: none;
+    max-height:120rem;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 ul.noindent {
