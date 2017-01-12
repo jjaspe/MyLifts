@@ -20,6 +20,7 @@ var index_6 = require('../BodyParts/index');
 var index_7 = require('../Exercises/index');
 var auth_service_1 = require('../auth/auth.service');
 var http_service_1 = require('../Utilities/http.service');
+var log_service_1 = require('../Utilities/log.service');
 var AppComponent = (function () {
     function AppComponent(userService, workoutService, sessionService, bodyPartService, exerciseService, setService, elementRef) {
         this.userService = userService;
@@ -31,6 +32,7 @@ var AppComponent = (function () {
         this.elementRef = elementRef;
         this.constants = CONSTANTS_1.CONSTANTS;
         this.page = CONSTANTS_1.CONSTANTS.HomePage;
+        this.userUpdated = false;
         this.title = "My Lifts";
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -40,8 +42,12 @@ var AppComponent = (function () {
         this.initServiceUrls();
         this.userService.getLoggedInUser().subscribe(function (a) {
             _this.user = a;
+            _this.userUpdated = true;
+            setTimeout(function () { return _this.userUpdated = false; }, 0);
         });
         this.workoutService.fetchWorkouts();
+    };
+    AppComponent.prototype.ngOnChanges = function () {
     };
     AppComponent.prototype.initServiceUrls = function () {
         this.userService.initUrls();
@@ -72,7 +78,7 @@ var AppComponent = (function () {
             templateUrl: "app/App/app.component.html",
             styleUrls: ["app/App/app.component.css"],
             providers: [index_2.UserService, index_4.WorkoutService, Index_1.SetService, index_5.SessionService, index_6.BodyPartService,
-                index_7.ExerciseService, auth_service_1.Auth, http_service_1.HttpService],
+                index_7.ExerciseService, auth_service_1.Auth, http_service_1.HttpService, log_service_1.LogService],
             directives: [index_1.ExerciseSelectionComponent, index_3.DashboardComponent, index_3.HomeComponent,
                 index_7.ExerciseCreationComponent, index_4.WorkoutListComponent],
         }), 

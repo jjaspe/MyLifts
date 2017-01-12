@@ -1,22 +1,24 @@
 <div *ngIf="workout" class="workout at_workout">    
-    <span class="at_workout_date workout-date">Date:{{workout.workoutDate|date:"MM/dd/yyyy"}}</span>
+    <span class="at_lbl_workout_date workout-date">Date:{{workout.workoutDate|date:"MM/dd/yyyy"}}</span>
     <br>
     <div *ngIf="workout.setGroups" class="row">
         <div class="workout-heading">
             <div class="col-sm-4">
-                <span>Set</span>            
+                <span class="at_lbl_set">Set</span>            
             </div>
             <div class="col-sm-4">
-                <span>Weight</span>            
+                <span class="at_lbl_weight">Weight</span>            
             </div>
             <div class="col-sm-4">
-                <span>Reps</span>            
+                <span class="at_lbl_reps">Reps</span>            
             </div>
         </div>        
     </div>
     <br>  
-    <div *ngFor="let setGroup of workout.setGroups" class="row">
-        <set-list [setGroup]="setGroup"></set-list>
-        <br>
+    <div class="div">
+        <set-group-list [setGroups]="workout.setGroups"
+        (setSelectedEvent)="setSelected($event)"></set-group-list>
+        <button *ngIf="selectedSet" (click)="deleteSet()"
+            class="btn btn-primary at_btn_delete_set">Delete Set</button>
     </div>
 </div>

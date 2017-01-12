@@ -2,7 +2,7 @@
     <div class="today-workout at_today_workout col-md-3">
         <workout [workout]="workout"></workout>
         <br>
-        <button class="btn btn-success at_add_set_button"  (click)="onAddSetButtonClicked()">Add Set</button>    
+        <button class="btn btn-success at_btn_add_set"  (click)="onAddSetButtonClicked()">Add Set</button>    
     </div>
     <div class="col-sm-1"></div>
     <div class="edit_workout col-md-8" *ngSwitchWhen="'add'">  
@@ -10,7 +10,6 @@
             <set-form *ngIf="newSet" [set]="newSet" [user]="user" (setAdded)="setAdded($event)"></set-form>
         </div> 
         <br>
-        <button class="btn btn-warning at_back_button" (click)="state='show'">Back</button> 
+        <button class="btn btn-warning at_btn_back" (click)="state='show'">Back</button> 
     </div>   
-    <!--<button class="btn btn-success at_submit_workout"  (click)="saveWorkoutClicked()">Save Workout</button>-->    
 </div>

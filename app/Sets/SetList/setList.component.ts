@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SetGroup, OrderSetsPipe} from "../shared/index"
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Set,SetGroup, OrderSetsPipe, SetService} from "../shared/index"
 import { SetComponent } from "../index"
+import { LogService } from "../../Utilities/log.service"
 
 @Component({
     selector: 'set-list',
@@ -9,10 +10,23 @@ import { SetComponent } from "../index"
     styleUrls:["app/Sets/set.component.css"],
     pipes:[OrderSetsPipe]
 })
-export class SetListComponent implements OnInit {
+export class SetListComponent implements OnInit,OnChanges {
     @Input() setGroup:SetGroup;
-    constructor() { }
+    @Input() selectedSet:Set;
+    @Output() setSelectedEvent= new EventEmitter<Set>();
+    constructor(private SetService:SetService, private logService:LogService) { }
 
     ngOnInit() { }
+    
+    ngOnChanges() {
+        this.logService.logObject("setGroupAfterChanges",this.setGroup);
+    }
+    setSelected(set:Set){
+        this.setSelectedEvent.emit(set);
+    }
+    
+    deleteSelectedSet(){
+        
+    }
 
 }

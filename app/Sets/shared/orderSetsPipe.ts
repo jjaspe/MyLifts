@@ -4,6 +4,6 @@ import { Set } from '../index'
 @Pipe({name:'orderSets'})
 export class OrderSetsPipe implements PipeTransform {
     transform(sets:Set[]){        
-            return sets?sets.sort((a,b)=>a.number-b.number):sets;
+        return sets?sets.sort((a,b)=>{return a.number-b.number}):sets;
     }
 }

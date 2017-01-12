@@ -17,6 +17,10 @@ var SetComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', index_1.Set)
     ], SetComponent.prototype, "set", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SetComponent.prototype, "isSelected", void 0);
     SetComponent = __decorate([
         core_1.Component({
             selector: "set",

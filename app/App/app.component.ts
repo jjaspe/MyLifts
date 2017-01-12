@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef} from "@angular/core";
+import { Component, OnInit, Input, ElementRef, OnChanges} from "@angular/core";
 import { Observable }  from 'rxjs/Rx';
 import { ExerciseSelectionComponent} from '../Exercises/index'
 import { User, UserService} from '../User/shared/index'
@@ -11,21 +11,23 @@ import { BodyPartService} from '../BodyParts/index'
 import { ExerciseService, ExerciseCreationComponent } from '../Exercises/index'
 import { Auth } from '../auth/auth.service'
 import { HttpService} from '../Utilities/http.service'
+import { LogService} from '../Utilities/log.service'
 
 @Component({
     selector: 'my-app',
     templateUrl: "app/App/app.component.html",
     styleUrls: ["app/App/app.component.css"],
     providers: [UserService, WorkoutService, SetService, SessionService, BodyPartService,
-        ExerciseService, Auth,HttpService],
+        ExerciseService, Auth,HttpService,LogService],
     directives: [ExerciseSelectionComponent, DashboardComponent, HomeComponent,
         ExerciseCreationComponent, WorkoutListComponent],
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
     @Input() apiUrl: string;
     constants: any = CONSTANTS;
     page: string = CONSTANTS.HomePage;
+    userUpdated:boolean=false;
     title = "My Lifts";
     user: User;
     constructor(private userService: UserService, private workoutService: WorkoutService,
@@ -41,8 +43,14 @@ export class AppComponent implements OnInit {
         this.initServiceUrls();
         this.userService.getLoggedInUser().subscribe(a =>{
             this.user = a;
+            this.userUpdated=true;
+            setTimeout(()=>this.userUpdated=false,0);
         });
         this.workoutService.fetchWorkouts();        
+    }
+    
+    ngOnChanges(){
+        
     }
 
     initServiceUrls() {

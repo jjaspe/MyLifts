@@ -1,13 +1,13 @@
-<div *ngIf="set" >
+<div *ngIf="set" [class.selectedSet]="isSelected">
     <div >
         <div class="col-sm-4">
-            <span>{{set.number}}</span>            
+            <span  class='at_lbl_set_number'>{{set.number}}</span>            
         </div>
         <div class="col-sm-4">
-            <span>{{set.weight}}</span>          
+            <span class='at_lbl_set_weight'>{{set.weight}}</span>          
         </div>
         <div class="col-sm-4">
-            <span>{{set.reps}}</span>            
+            <span class='at_lbl_set_reps'>{{set.reps}}</span>            
         </div>  
         <div class="row">
             <div class="col-sm-1"></div>

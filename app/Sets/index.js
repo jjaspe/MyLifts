@@ -12,4 +12,5 @@ __export(require("./Details/detail.component"));
 __export(require("./set.component"));
 __export(require("./SetList/setList.component"));
 __export(require("./SetForm/setForm.component"));
+__export(require("./SetGroupList/SetGroupList.component"));
 //# sourceMappingURL=index.js.map

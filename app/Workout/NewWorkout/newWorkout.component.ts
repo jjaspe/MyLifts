@@ -22,7 +22,7 @@ export class NewWorkoutComponent implements OnInit {
         this.workout= new Workout();       
         this.workout.userId=this.user.Id;
         this.workout.workoutDate = new Date();
-        this.workoutService.saveWorkout(this.workout);
+        this.workoutService.saveWorkout(this.workout,null);
         this.newWorkoutButtonClicked.emit(null);
     }
 }

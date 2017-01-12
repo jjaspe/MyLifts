@@ -1,0 +1,6 @@
+<div *ngFor="let setGroup of setGroups" class="row">
+    <set-list [setGroup]="setGroup" 
+    (setSelectedEvent)="setSelected($event)"
+    [selectedSet]="selectedSet"></set-list>
+    <br>
+</div>

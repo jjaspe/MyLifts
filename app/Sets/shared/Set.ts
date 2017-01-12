@@ -8,4 +8,5 @@ export class Set{
     weight:number=0;
     reps:number=0;
     details:Detail[]=[];
+    Id:string;
 }

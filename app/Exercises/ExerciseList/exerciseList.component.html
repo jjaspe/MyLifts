@@ -1,6 +1,6 @@
 <h2 class="exercises_title">{{title}}</h2>
 <ul class="at_exercise exercise-list grid-pad noindent nobullets">
     <li *ngFor="let exercise of exercises" class="exercise at_exercises" (click)="onExerciseSelected(exercise)">
-        <button class="btn btn-primary btn-md exercise-button at_exercise_button">{{exercise.Name}}</button>
+        <button class="btn btn-primary btn-md exercise-button at_btn_exercise">{{exercise.Name}}</button>
     </li>
 </ul>

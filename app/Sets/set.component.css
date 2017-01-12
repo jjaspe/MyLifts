@@ -5,3 +5,8 @@
 [class*='col-'] {
   float: left;
 }
+
+.selectedSet {
+  background: red;
+  background-color: red;
+}

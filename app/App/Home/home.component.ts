@@ -3,6 +3,7 @@ import { User} from "../../User/index"
 import { Workout, WorkoutService } from '../../Workout/index'
 import { NewWorkoutComponent,WorkoutDetailsComponent} from '../../Workout/index'
 import { SetService} from '../../Sets/index'
+import { Observable} from 'rxjs/Rx'
 
 @Component({
     selector: 'home',
@@ -11,6 +12,7 @@ import { SetService} from '../../Sets/index'
 })
 export class HomeComponent implements OnInit, OnChanges {
     @Input() user:User;
+    @Input() userUpdated:boolean;
     currentWorkout:Workout;
     constructor(private workoutService:WorkoutService, private setService:SetService) { }
 
@@ -19,13 +21,13 @@ export class HomeComponent implements OnInit, OnChanges {
     }
     
     ngOnChanges(){
-        this.getWorkout();
     }
     
     getWorkout(){
         let today:Date=new Date();
         if(this.user){
-            this.currentWorkout = this.workoutService.getLoggedInUserWorkoutByDate(today);
+            console.log({User:this.user});
+            this.currentWorkout = this.workoutService.getLoggedInUserWorkoutByDate(today);            
         }
     }
 

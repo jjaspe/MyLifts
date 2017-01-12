@@ -10,4 +10,5 @@ import {Component,OnInit,Input} from "@angular/core"
 
 export class SetComponent{
     @Input() set:Set;
+    @Input() isSelected:boolean;
 }

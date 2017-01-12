@@ -12,9 +12,21 @@ var core_1 = require('@angular/core');
 var index_1 = require('./shared/index');
 var index_2 = require("../Sets/index");
 var WorkoutComponent = (function () {
-    function WorkoutComponent() {
+    function WorkoutComponent(setService, workoutService) {
+        this.setService = setService;
+        this.workoutService = workoutService;
     }
     WorkoutComponent.prototype.ngOnInit = function () { };
+    WorkoutComponent.prototype.setSelected = function (set) {
+        this.selectedSet = set;
+    };
+    WorkoutComponent.prototype.deleteSet = function () {
+        var _this = this;
+        this.workoutService.removeSetFromWorkout(this.workout, this.selectedSet, function (savedWorkout) {
+            _this.workout = savedWorkout;
+            _this.selectedSet = null;
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', index_1.Workout)
@@ -23,9 +35,9 @@ var WorkoutComponent = (function () {
         core_1.Component({
             selector: 'workout',
             templateUrl: 'app/Workout/workout.component.html',
-            directives: [index_2.SetListComponent]
+            directives: [index_2.SetGroupListComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [index_2.SetService, index_1.WorkoutService])
     ], WorkoutComponent);
     return WorkoutComponent;
 }());

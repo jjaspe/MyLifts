@@ -7,12 +7,12 @@
                        (workoutsButtonClicked)="goToWorkouts($event)"></dashboard>
         </div>
     </row>
-    <div *ngIf="user && user.FirstName">Hello {{user.FirstName}}</div>
+    <div *ngIf="user && user.FirstName" class="at_lbl_greeting">Hello {{user.FirstName}}</div>
     <row *ngIf="user">
         <div class="main at_main col-md-12">
             <div [ngSwitch]="page">
                 <exercise-creation *ngSwitchWhen="constants.AddExercisesPage"></exercise-creation>
-                <home [user]="user" *ngSwitchWhen="constants.HomePage"></home>
+                <home [user]="user" [userUpdated]="userUpdated" *ngSwitchWhen="constants.HomePage"></home>
                 <workout-list class="col-sm-6" *ngSwitchWhen="constants.WorkoutsPage"></workout-list>
             </div>    
         </div>

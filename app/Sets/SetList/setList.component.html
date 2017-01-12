@@ -1,11 +1,11 @@
 <div class="panel panel-group"> 
     <div class="panel panel-info">
         <div class="panel panel-heading">
-            <span>{{setGroup.exercise.Name}}</span>
+            <span class="at_lbl_set_group_ex_name">{{setGroup.exercise.Name}}</span>
         </div>
         <div class="panel panel-content">   
-            <div *ngFor="let set of (setGroup.Sets | orderSets)">    
-                <set [set]="set"></set>
+            <div *ngFor="let set of (setGroup.sets | orderSets)">    
+                <set class="at_cmp_set" [set]="set" (click)="setSelected(set)" [isSelected]="set==selectedSet"></set>
             </div>
         </div>
     </div>

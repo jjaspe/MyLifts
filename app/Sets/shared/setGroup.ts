@@ -3,5 +3,5 @@ import { Set } from "./index"
 
 export class SetGroup{
     exercise:Exercise;
-    Sets:Set[]=[];
+    sets:Set[]=[];
 }

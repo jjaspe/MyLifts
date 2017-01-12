@@ -11,8 +11,7 @@ export class UserService {
     loggedInUser:Subject<User>;
     inMemoryUser:User;
     usersUrl:string="/Users/"
-    constructor(private httpService:HttpService,private sessionService:SessionService,
-            private workoutService:WorkoutService) { 
+    constructor(private httpService:HttpService,private sessionService:SessionService) { 
         this.loggedInUser=<Subject<User>> new Subject();
     }
     
@@ -46,8 +45,13 @@ export class UserService {
     setLoggedInUser(username:string){
         this.getUserByUsername(username).subscribe(a=>{
             this.inMemoryUser=a;
-            this.loggedInUser.next(this.inMemoryUser);
-            this.workoutService.setUser(this.inMemoryUser);
+            this.loggedInUser.next(this.inMemoryUser); /*
+            this.workoutService.setUser(this.inMemoryUser);           
+            this.workoutService.getWorkoutsByUser(this.inMemoryUser).subscribe(w =>{  
+                this.inMemoryUser.Workouts=w;
+                this.workoutService.setUser(this.inMemoryUser);
+                this.loggedInUser.next(this.inMemoryUser);
+            });*/
         });
     }
     

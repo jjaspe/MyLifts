@@ -1,6 +1,6 @@
-<button class="btn btn-default" (click)="onHomeButtonClicked()">Home</button>
-<button class="btn btn-default" (click)="goToWorkouts()">Workouts</button>
-<button class="btn btn-default" (click)="addExercises()">Add Exercises</button>
-<button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-<button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+<button class="btn btn-default at_btn_home" (click)="onHomeButtonClicked()">Home</button>
+<button class="btn btn-default at_btn_workouts" (click)="goToWorkouts()">Workouts</button>
+<button class="btn btn-default at_btn_add_exercises" (click)="addExercises()">Add Exercises</button>
+<button class="btn btn-primary btn-margin at_btn_login" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+<button class="btn btn-primary btn-margin at_btn_logout" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
     

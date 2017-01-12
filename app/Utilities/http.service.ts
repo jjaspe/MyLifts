@@ -18,6 +18,13 @@ export class HttpService {
         return this.http.post(url,json,options);
     }
     
+    delete(url):Observable<Response>{
+        let headers= new Headers({ 'Content-Type': 'application/json' });
+        let options= new RequestOptions({headers:headers});
+        
+        return this.http.delete(url,options);
+    }
+    
     
     extractUserData(res:Response){
         return res.json() ||{};

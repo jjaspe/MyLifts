@@ -1,15 +1,29 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workout} from './shared/index'
-import { Set, SetComponent, SetListComponent } from "../Sets/index"
+import { Workout, WorkoutService} from './shared/index'
+import { Set, SetGroupListComponent, SetService } from "../Sets/index"
 
 @Component({
     selector: 'workout',
     templateUrl: 'app/Workout/workout.component.html',
-    directives:[SetListComponent]
+    directives: [SetGroupListComponent]
 })
 export class WorkoutComponent implements OnInit {
-    @Input() workout:Workout;
-    constructor() { }
+    @Input() workout: Workout;
+    selectedSet: Set;
+    constructor(private setService: SetService, private workoutService: WorkoutService) { }
 
     ngOnInit() { }
+
+    setSelected(set: Set) {
+        this.selectedSet = set;
+    }
+
+    deleteSet() {
+        this.workoutService.removeSetFromWorkout(this.workout, this.selectedSet, (savedWorkout) => {
+            this.workout = savedWorkout;
+            this.selectedSet=null;
+        });
+
+    }
+
 }
